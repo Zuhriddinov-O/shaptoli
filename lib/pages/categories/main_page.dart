@@ -1,8 +1,6 @@
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
-import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:uzum_market_project/uzum.dart';
 
 import '../../api_service.dart';
@@ -91,7 +89,7 @@ class _MainPageState extends State<MainPage> {
             splashColor: Colors.green,
             onTap: () {},
             child: Ink(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 backgroundBlendMode: BlendMode.luminosity,
                 color: CupertinoColors.systemGrey,
               ),
