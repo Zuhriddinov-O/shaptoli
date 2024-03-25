@@ -1,4 +1,3 @@
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:uzum_market_project/uzum.dart';
 import "package:http/http.dart" as http;
 import "dart:convert";
@@ -10,13 +9,8 @@ abstract class ApiService {
 }
 
 class ApiServiceImpl extends ApiService {
-  // final _checker = InternetConnectionChecker();
-
   @override
   Future<List<Uzum>?> getProducts() async {
-    // if (!await _checker.hasConnection) {
-    //   return null;
-    // }
     final response = await http.get(Uri.parse("$baseURl/uzum"));
     if (response.statusCode == 200) {
       final jsonString = json.decode(response.body) as List;
