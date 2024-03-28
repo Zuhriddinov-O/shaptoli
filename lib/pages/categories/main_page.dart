@@ -1,6 +1,7 @@
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:uzum_market_project/classes/products.dart';
 import '../../widgets/scrollable_categories.dart';
 import '../../widgets/slider.dart';
@@ -57,8 +58,8 @@ class _MainPageState extends State<MainPage> {
       color: Colors.transparent,
       child: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: kIsWeb?5:2,
-          mainAxisExtent: 450,
+          crossAxisCount: kIsWeb ? 5 : 2,
+          mainAxisExtent: 500,
           crossAxisSpacing: 12,
           mainAxisSpacing: 12,
         ),
@@ -73,11 +74,38 @@ class _MainPageState extends State<MainPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Center(child: Image.network(items.image,fit: BoxFit.fill,width: MediaQuery.of(context).size.width)),
-                  Text(items.name,overflow:TextOverflow.ellipsis),
-                  Text(items.rating.toString()),
-                  Text(items.price.toString()),
-                  Text(items.discount.toString()),
+                  Center(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.network(items.image,
+                            fit: BoxFit.fill, width: MediaQuery.of(context).size.width),
+                      )),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(items.name, overflow: TextOverflow.ellipsis),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Image.asset("assets/logos/star.png", width: 13, height: 13),
+                        Text(items.rating.toString()),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, top: 8, bottom: 8),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "${items.price} so'm",style: const TextStyle(decoration: TextDecoration.lineThrough),),
+                        Text(
+                            "${items.discount} so'm",
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),

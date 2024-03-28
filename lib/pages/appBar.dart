@@ -40,7 +40,7 @@ AppBar appBar(BuildContext context, bool likeIsHave) {
                     builder: (context) => LikedPage(),
                   ));
                 },
-                icon: const Icon(CupertinoIcons.heart, size: 30),
+                icon: Image.asset('assets/logos/shopping-bag.png', width: 30, height: 30),
               ),
             )
           : Container(padding: EdgeInsets.all(0)),
