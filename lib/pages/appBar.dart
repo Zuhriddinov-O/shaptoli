@@ -40,15 +40,7 @@ AppBar appBar(BuildContext context, bool likeIsHave) {
                     builder: (context) => LikedPage(),
                   ));
                 },
-<<<<<<< HEAD
                 icon: Image.asset('assets/logos/shopping-bag.png', width: 30, height: 30),
-=======
-                icon: SizedBox(
-                  width: 30,
-                    height: 30,
-                    child: Image.asset("assets/logos/shopping-bag.png")
-                ),
->>>>>>> 7c5be1d957b7bcab4319bb9862aa0899012fa8bf
               ),
             )
           : Container(padding: EdgeInsets.all(0)),

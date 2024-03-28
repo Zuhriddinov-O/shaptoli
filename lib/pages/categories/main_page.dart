@@ -74,7 +74,6 @@ class _MainPageState extends State<MainPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-<<<<<<< HEAD
                   Center(
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(12),
@@ -106,14 +105,12 @@ class _MainPageState extends State<MainPage> {
                         ),
                       ],
                     ),
-                  )
-=======
+                  ),
                   Center(child: Image.network(items.image,fit: BoxFit.fill,width: MediaQuery.of(context).size.width)),
                   Text(items.name,overflow:TextOverflow.ellipsis),
                   Text(items.rating.toString()),
                   Text(items.price.toString(), style: const TextStyle(decoration: TextDecoration.lineThrough, fontSize: 12),),
                   Text(items.discount.toString()),
->>>>>>> 7c5be1d957b7bcab4319bb9862aa0899012fa8bf
                 ],
               ),
             ),
