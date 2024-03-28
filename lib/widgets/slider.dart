@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../pages/categories/gozallik/gozallik_page.dart';
 import '../pages/categories/maishiy_texnikalar/maishiy_page.dart';
 import '../pages/categories/oziq_ovqat/oziq_ovqat_page.dart';
-PageController pageController=PageController(initialPage: 0, keepPage: true);
+
+PageController pageController = PageController(initialPage: 0, keepPage: true);
+
 Container container(BuildContext context) {
   return Container(
     width: double.infinity,
@@ -19,7 +21,7 @@ Container container(BuildContext context) {
             Navigator.of(context).push(
               CupertinoPageRoute(
                 builder: (context) {
-                  return const MaishiyPage();
+                  return MaishiyPage();
                 },
               ),
             );

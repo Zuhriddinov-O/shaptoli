@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../categories/categories_page.dart';
 import '../categories/main_page.dart';
 import '../kabinet/kabinet_page.dart';
@@ -15,9 +14,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
-
   final _pages = <StatefulWidget>[
-    const MainPage(),
+    MainPage(product: null),
     const KatalogPage(),
     const SavatPage(),
     const KabinetPage(),

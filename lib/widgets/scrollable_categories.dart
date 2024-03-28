@@ -37,7 +37,7 @@ Container singleChildScrollView(BuildContext context) {
                           Navigator.of(context).push(
                             CupertinoPageRoute(
                               builder: (context) {
-                                return const Aksessuarlar();
+                                return Aksessuarlar();
                               },
                             ),
                           );
@@ -139,7 +139,7 @@ Container singleChildScrollView(BuildContext context) {
                   Navigator.of(context).push(
                     CupertinoPageRoute(
                       builder: (context) {
-                        return const KanselyariyaPage();
+                        return KanselyariyaPage();
                       },
                     ),
                   );
@@ -171,7 +171,7 @@ Container singleChildScrollView(BuildContext context) {
                   Navigator.of(context).push(
                     CupertinoPageRoute(
                       builder: (context) {
-                        return const KitoblarPage();
+                        return KitoblarPage();
                       },
                     ),
                   );
@@ -203,7 +203,7 @@ Container singleChildScrollView(BuildContext context) {
                   Navigator.of(context).push(
                     CupertinoPageRoute(
                       builder: (context) {
-                        return const KiyimPage();
+                        return KiyimPage();
                       },
                     ),
                   );
@@ -235,7 +235,7 @@ Container singleChildScrollView(BuildContext context) {
                   Navigator.of(context).push(
                     CupertinoPageRoute(
                       builder: (context) {
-                        return const MaishiyPage();
+                        return MaishiyPage();
                       },
                     ),
                   );
@@ -267,7 +267,7 @@ Container singleChildScrollView(BuildContext context) {
                 onTap: () {
                   Navigator.of(context).push(CupertinoPageRoute(
                     builder: (context) {
-                      return const OziqOvqatPage();
+                      return OziqOvqatPage();
                     },
                   ));
                 },
@@ -301,7 +301,7 @@ Container singleChildScrollView(BuildContext context) {
                   Navigator.of(context).push(
                     CupertinoPageRoute(
                       builder: (context) {
-                        return const PoyabzallarPage();
+                        return PoyabzallarPage();
                       },
                     ),
                   );
@@ -333,7 +333,7 @@ Container singleChildScrollView(BuildContext context) {
                   Navigator.of(context).push(
                     CupertinoPageRoute(
                       builder: (context) {
-                        return const XobbiPage();
+                        return XobbiPage();
                       },
                     ),
                   );

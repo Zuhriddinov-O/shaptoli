@@ -1,30 +1,26 @@
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:uzum_market_project/uzum.dart';
-
-import '../../api_service.dart';
+import 'package:uzum_market_project/classes/products.dart';
 import '../../widgets/scrollable_categories.dart';
 import '../../widgets/slider.dart';
 import '../appBar.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+  MainPage({super.key, required this.product});
+
+  final Product product;
 
   @override
   State<MainPage> createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
-  final _apiService = ApiServiceImpl();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(context, true),
       body: RefreshIndicator(
         onRefresh: () async {
-          // _apiService.getProducts();
           setState(() {});
         },
         child: ListView(
@@ -43,22 +39,7 @@ class _MainPageState extends State<MainPage> {
                   Text("Tavsiyalar"),
                 ],
                 views: [
-                  Container(
-                    color: Colors.transparent,
-                    child: FutureBuilder(
-                        future: _apiService.getProducts(),
-                        builder: (context, snapshot) {
-                          if (snapshot.data != null && snapshot.data?.isNotEmpty == true) {
-                            return _successField(snapshot.data);
-                          } else if (snapshot.data == null) {
-                            return const Center(
-                                child: Text("No Internet Connection", style: TextStyle(fontSize: 23)));
-                          } else if (snapshot.data?.isEmpty == true) {
-                            return const Center(child: Text("Empty", style: TextStyle(fontSize: 23)));
-                          }
-                          return Container();
-                        }),
-                  ),
+                  _container(),
                   Container(
                     color: Colors.blueGrey,
                     child: const Center(child: Text("Add up from Backed end page 2")),
@@ -72,47 +53,21 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  _successField(List<Uzum>? products) {
-    return Padding(
-      padding: const EdgeInsets.all(8),
+  Container _container() {
+    return Container(
+      color: Colors.transparent,
       child: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
+          mainAxisExtent: 300,
           crossAxisSpacing: 12,
           mainAxisSpacing: 12,
-          mainAxisExtent: 300,
         ),
-        itemCount: products?.length,
-        itemBuilder: (context, index) {
-          final product = products?[index];
+        itemBuilder: (BuildContext context, index) {
+          final items = productList[widget.product.id][index];
           return InkWell(
-            splashColor: Colors.green,
             onTap: () {},
-            child: Ink(
-              decoration: const BoxDecoration(
-                backgroundBlendMode: BlendMode.luminosity,
-                color: CupertinoColors.systemGrey,
-              ),
-              height: 200,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image.network(
-                    product?.image ?? "",
-                    height: 200,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text("Name:${product?.name ?? ""}"),
-                      Text("Price:${product?.price.toString() ?? ""}"),
-                      Text("Discount:${product?.discount.toString() ?? ""}"),
-                    ],
-                  ),
-                  Text("Description:${product?.description ?? ""}"),
-                ],
-              ),
-            ),
+            child: Ink(),
           );
         },
       ),
