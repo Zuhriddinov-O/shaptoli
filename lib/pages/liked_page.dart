@@ -17,6 +17,7 @@ class _LikedPageState extends State<LikedPage> {
       appBar: AppBar(
           backgroundColor:Colors.blueGrey.shade50,
           title: const Text(
+            //ffsaojos
             "Istaklarim",
             style: TextStyle(fontWeight: FontWeight.w600, fontSize: 21),
           ),
