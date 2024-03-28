@@ -76,7 +76,7 @@ class _MainPageState extends State<MainPage> {
                   Center(child: Image.network(items.image,fit: BoxFit.fill,width: MediaQuery.of(context).size.width)),
                   Text(items.name,overflow:TextOverflow.ellipsis),
                   Text(items.rating.toString()),
-                  Text(items.price.toString()),
+                  Text(items.price.toString(), style: const TextStyle(decoration: TextDecoration.lineThrough, fontSize: 12),),
                   Text(items.discount.toString()),
                 ],
               ),
