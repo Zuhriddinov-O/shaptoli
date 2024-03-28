@@ -31,7 +31,7 @@ BottomNavigationBar bottomNavigationBar(BuildContext context, setState) {
         label: 'Katalog',
       ),
       BottomNavigationBarItem(
-        icon: Image.asset("assets/logos/shopping-bag.png", width: 80),
+        icon: Image.asset("assets/logos/shopping-bag.png", width: 50),
         label: 'Savat',
       ),
       const BottomNavigationBarItem(
