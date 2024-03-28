@@ -1,4 +1,5 @@
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:uzum_market_project/classes/products.dart';
 import '../../widgets/scrollable_categories.dart';
@@ -56,8 +57,8 @@ class _MainPageState extends State<MainPage> {
       color: Colors.transparent,
       child: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          mainAxisExtent: 300,
+          crossAxisCount: kIsWeb?5:2,
+          mainAxisExtent: 450,
           crossAxisSpacing: 12,
           mainAxisSpacing: 12,
         ),
@@ -68,7 +69,17 @@ class _MainPageState extends State<MainPage> {
           return InkWell(
             onTap: () {},
             child: Ink(
-              child: Image.network(items.image),
+              color: Colors.blue,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(child: Image.network(items.image,fit: BoxFit.fill,width: MediaQuery.of(context).size.width)),
+                  Text(items.name,overflow:TextOverflow.ellipsis),
+                  Text(items.rating.toString()),
+                  Text(items.price.toString()),
+                  Text(items.discount.toString()),
+                ],
+              ),
             ),
           );
         },
