@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -59,10 +60,16 @@ class _MainPageState extends State<MainPage> {
 
   Widget _container() {
     return GridView.builder(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(MediaQuery.of(context).size.width / 80),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: kIsWeb ? 5 : 2,
-        mainAxisExtent: MediaQuery.of(context).size.height/1.4,
+        crossAxisCount: MediaQuery.of(context).size.width <= 550
+            ? 2
+            : true && MediaQuery.of(context).size.width <= 750 && MediaQuery.of(context).size.width > 550
+                ? 3
+                : true && MediaQuery.of(context).size.width > 750 && MediaQuery.of(context).size.width <= 950
+                    ? 4
+                    : 5,
+        mainAxisExtent: MediaQuery.of(context).size.height / 1.35,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
       ),
@@ -70,24 +77,19 @@ class _MainPageState extends State<MainPage> {
       itemBuilder: (BuildContext context, index) {
         productList.shuffle();
         final items = productList[index];
-        return InkWell(
-          onTap: () {},
-          child: Ink(
-            color: Colors.blue,
-            child: Column(
+        return OpenContainer(
+          closedBuilder: (BuildContext context, void Function() action) {
+            return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Container(
+                    borderRadius: BorderRadius.circular(5),
+                    child: Image.network(
+                      items.image,
                       width: MediaQuery.of(context).size.width,
-                      color: Colors.red,
-                      child: Image.network(
-                        items.image,
-                        height: MediaQuery.of(context).size.height/2,
-                        fit: BoxFit.fill,
-                      ),
+                      height: MediaQuery.of(context).size.height / 2,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
@@ -136,15 +138,98 @@ class _MainPageState extends State<MainPage> {
                             },
                             icon: Image.asset("assets/logos/shopping-bag2.png",
                                 width: 30, height: 30, color: Colors.grey),
-                          )
+                          ),
                         ],
                       ),
                     ],
                   ),
                 ),
               ],
-            ),
-          ),
+            );
+          },
+          openBuilder: (BuildContext context, void Function({Object? returnValue}) action) {
+            return SizedBox(
+              child: ListView(
+                children: [
+                  AppBar(
+                      centerTitle: true,
+                      title: Text("${items.categoryName} Categoriyasi",
+                          textScaler: TextScaler.linear(1.3),
+                          style: const TextStyle(fontSize: 16, textBaseline: TextBaseline.ideographic)),
+                      forceMaterialTransparency: true),
+                  Center(
+                    child: Image.network(
+                      items.image,
+                      width: double.infinity,
+                      height: MediaQuery.of(context).size.height / 1.5,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: Row(
+                            children: [
+                              Image.asset("assets/logos/star.png", width: 13, height: 13),
+                              Text("${items.rating} ( 7803 baho ) ${items.count} ta buyurtma"),
+                            ],
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                            saveProduct = !saveProduct;
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                backgroundColor: saveProduct ? null : Colors.red,
+                                content: Text(saveProduct
+                                    ? "Product is added Succesfully"
+                                    : "Product is removed from the list"),
+                              ),
+                            );
+                          },
+                          icon: Image.asset("assets/logos/shopping-bag2.png",
+                              width: 30, height: 30, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Text(
+                    items.name,
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Row(
+                          children: [
+                            Container(
+                              color: const Color(0xFF7000FE),
+                              child: const Text("Ekskluziv", style: TextStyle(color: Colors.white)),
+                            ),
+                            Container(
+                              color: const Color(0xFFFCB0D4),
+                              child: const Text("Sevimli tovarlar", style: TextStyle(color: Colors.white)),
+                            ),
+                            Container(
+                              color: const Color(0xFF3B007D),
+                              child: const Text("Aksiya", style: TextStyle(color: Colors.white)),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            );
+          },
         );
       },
     );
