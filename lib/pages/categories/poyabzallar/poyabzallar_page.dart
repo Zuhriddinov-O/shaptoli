@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../widgets/app_bar_for_category_items.dart';
 
 class PoyabzallarPage extends StatefulWidget {
-  PoyabzallarPage({super.key});
+  const PoyabzallarPage({super.key});
 
   @override
   State<PoyabzallarPage> createState() => _PoyabzallarPageState();
@@ -26,7 +26,7 @@ class _PoyabzallarPageState extends State<PoyabzallarPage> {
           children: const [
             Padding(
                 padding: EdgeInsets.only(top: 8, left: 12),
-                child: Text("Go'zallik", style: TextStyle(fontWeight: FontWeight.w700, fontSize: 27))),
+                child: Text("Poyabzallar", style: TextStyle(fontWeight: FontWeight.w700, fontSize: 27))),
             Padding(
                 padding: EdgeInsets.only(left: 12),
                 child: Text("61 343 ta tovar", style: TextStyle(color: Colors.grey, fontSize: 18))),

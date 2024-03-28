@@ -6,9 +6,7 @@ import '../../widgets/slider.dart';
 import '../appBar.dart';
 
 class MainPage extends StatefulWidget {
-  MainPage({super.key, required this.product});
-
-  final Product product;
+  MainPage({super.key});
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -64,7 +62,7 @@ class _MainPageState extends State<MainPage> {
           mainAxisSpacing: 12,
         ),
         itemBuilder: (BuildContext context, index) {
-          final items = productList[widget.product.id][index];
+          final items = productList[index][index].id;
           return InkWell(
             onTap: () {},
             child: Ink(),
