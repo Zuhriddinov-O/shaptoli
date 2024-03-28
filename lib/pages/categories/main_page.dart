@@ -7,6 +7,7 @@ import 'package:uzum_market_project/classes/products.dart';
 
 import '../../widgets/scrollable_categories.dart';
 import '../../widgets/slider.dart';
+import '../appBar.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -21,7 +22,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: appBar(context, true),
+      appBar: appBar(context, true),
       body: RefreshIndicator(
         onRefresh: () async {
           setState(() {});
