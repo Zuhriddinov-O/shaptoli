@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
         landscapeLayout: BottomNavigationBarLandscapeLayout.centered,
         onTap: (value) {
           setState(
-                () {
+            () {
               _currentIndex = value;
             },
           );

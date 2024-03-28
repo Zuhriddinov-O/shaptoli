@@ -61,11 +61,15 @@ class _MainPageState extends State<MainPage> {
           crossAxisSpacing: 12,
           mainAxisSpacing: 12,
         ),
+        itemCount: productList.length,
         itemBuilder: (BuildContext context, index) {
-          final items = productList[index][index].id;
+          productList.shuffle();
+          final items = productList[index];
           return InkWell(
             onTap: () {},
-            child: Ink(),
+            child: Ink(
+              child: Image.network(items.image),
+            ),
           );
         },
       ),
