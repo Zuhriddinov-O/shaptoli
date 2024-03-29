@@ -19,7 +19,7 @@ AppBar appBar(BuildContext context, bool likeIsHave) {
       cursorColor: Colors.grey,
       placeholder: "Mahsulot va toifalarni qidirish",
       style: GoogleFonts.oxygen(),
-      placeholderStyle: TextStyle(color: Colors.black87, fontSize: 17),
+      placeholderStyle: const TextStyle(color: Colors.black87, fontSize: 17),
       prefix: const Padding(
         padding: EdgeInsets.all(8.0),
         child: Icon(
@@ -37,13 +37,13 @@ AppBar appBar(BuildContext context, bool likeIsHave) {
                 color: Colors.grey,
                 onPressed: () {
                   Navigator.of(context).push(CupertinoPageRoute(
-                    builder: (context) => LikedPage(),
+                    builder: (context) => const LikedPage(),
                   ));
                 },
                 icon: Image.asset('assets/logos/shopping-bag.png', width: 30, height: 30),
               ),
             )
-          : Container(padding: EdgeInsets.all(0)),
+          : Container(padding: const EdgeInsets.all(0)),
     ],
   );
 }
