@@ -43,7 +43,7 @@ AppBar appBar(BuildContext context, bool likeIsHave) {
                 icon: Image.asset('assets/logos/shopping-bag.png', width: 30, height: 30),
               ),
             )
-          : Container(padding: EdgeInsets.all(0)),
+          : Container(padding: const EdgeInsets.all(0)),
     ],
   );
 }
