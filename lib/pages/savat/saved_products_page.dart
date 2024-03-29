@@ -46,7 +46,7 @@ class _SavatPageState extends State<SavatPage> {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        Gap(5),
+                        const Gap(5),
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 13),
                           child: Text(

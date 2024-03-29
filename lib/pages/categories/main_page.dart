@@ -1,9 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:uzum_market_project/classes/products.dart';
 
 import '../../widgets/scrollable_categories.dart';
@@ -30,8 +27,8 @@ class _MainPageState extends State<MainPage> {
         },
         child: ListView(
           children: [
-            // container(context),
-            // singleChildScrollView(context),
+            container(context),
+            singleChildScrollView(context),
             Container(
               height: 750,
               width: double.infinity,
@@ -69,7 +66,7 @@ class _MainPageState extends State<MainPage> {
                 : true && MediaQuery.of(context).size.width > 750 && MediaQuery.of(context).size.width <= 950
                     ? 4
                     : 5,
-        mainAxisExtent: MediaQuery.of(context).size.height / 1.35,
+        mainAxisExtent: MediaQuery.of(context).size.height / 1.85,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
       ),
@@ -88,7 +85,7 @@ class _MainPageState extends State<MainPage> {
                     child: Image.network(
                       items.image,
                       width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height / 2,
+                      height: MediaQuery.of(context).size.height / 2.9,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -107,7 +104,7 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 10),
+                  padding: const EdgeInsets.only(left: 10),
                   child: Column(
                     children: [
                       Align(
@@ -154,7 +151,7 @@ class _MainPageState extends State<MainPage> {
                   AppBar(
                       centerTitle: true,
                       title: Text("${items.categoryName} Categoriyasi",
-                          textScaler: TextScaler.linear(1.3),
+                          textScaler: const TextScaler.linear(1.3),
                           style: const TextStyle(fontSize: 16, textBaseline: TextBaseline.ideographic)),
                       forceMaterialTransparency: true),
                   Center(
