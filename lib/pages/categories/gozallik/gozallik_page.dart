@@ -48,7 +48,7 @@ class _GozallikPageState extends State<GozallikPage> {
                 child: Text("${filteredList.length} ta tovar", style: TextStyle(color: Colors.grey, fontSize: 18))),
             const Divider(thickness: 0.5),
             Padding(
-              padding: EdgeInsets.only(left: 10,right: 10),
+              padding: const EdgeInsets.only(left: 10,right: 10),
               child: SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: GridView.builder(
@@ -214,7 +214,7 @@ class _GozallikPageState extends State<GozallikPage> {
                       });
                     }),
               ),
-            )
+            ),
           ],
         ),
       ),
