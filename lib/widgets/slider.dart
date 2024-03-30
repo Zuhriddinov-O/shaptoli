@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../pages/categories/gozallik/gozallik_page.dart';
@@ -5,8 +7,12 @@ import '../pages/categories/maishiy_texnikalar/maishiy_page.dart';
 import '../pages/categories/oziq_ovqat/oziq_ovqat_page.dart';
 
 PageController pageController = PageController(initialPage: 0, keepPage: true);
-
 Container container(BuildContext context) {
+  int currentPage = 0;
+  Timer? timer;
+  PageController pageController = PageController(
+    initialPage: 0,
+  );
   return Container(
     width: double.infinity,
     height: 220,

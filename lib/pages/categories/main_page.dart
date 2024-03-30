@@ -1,11 +1,16 @@
+import 'dart:async';
+
 import 'package:animations/animations.dart';
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uzum_market_project/classes/products.dart';
 
 import '../../widgets/scrollable_categories.dart';
-import '../../widgets/slider.dart';
 import '../appBar.dart';
+import 'gozallik/gozallik_page.dart';
+import 'maishiy_texnikalar/maishiy_page.dart';
+import 'oziq_ovqat/oziq_ovqat_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -16,6 +21,30 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   bool saveProduct = false;
+  int currentPage = 0;
+  Timer? timer;
+  PageController pageController = PageController(
+    initialPage: 0,
+  );
+
+  @override
+  void initState() {
+    timer = Timer.periodic(const Duration(seconds: 5), (Timer timer) {
+      if (currentPage < 2) {
+        currentPage++;
+      } else {
+        currentPage = 0;
+      }
+      pageController.animateToPage(currentPage, duration: const Duration(milliseconds: 350), curve: Curves.easeIn);
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    timer?.cancel();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +56,144 @@ class _MainPageState extends State<MainPage> {
         },
         child: ListView(
           children: [
-            container(context),
+            Container(
+              width: double.infinity,
+              height: 220,
+              color: Colors.white,
+              child: PageView(
+                controller: pageController,
+                reverse: true,
+                scrollBehavior: const ScrollBehavior(),
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        CupertinoPageRoute(
+                          builder: (context) {
+                            return const MaishiyPage();
+                          },
+                        ),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(13.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(13),
+                        child: Image.asset(
+                          "assets/images/slider_images/smartfone0.jpg",
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        CupertinoPageRoute(
+                          builder: (context) {
+                            return GozallikPage();
+                          },
+                        ),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(13.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(13),
+                        child: Image.asset(
+                          "assets/images/slider_images/gozallik1.jpg",
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        CupertinoPageRoute(
+                          builder: (context) {
+                            return GozallikPage();
+                          },
+                        ),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(13.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(13),
+                        child: Image.asset(
+                          "assets/images/slider_images/gozallik0.jpg",
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        CupertinoPageRoute(
+                          builder: (context) {
+                            return const MaishiyPage();
+                          },
+                        ),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(13.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(13),
+                        child: Image.asset(
+                          "assets/images/slider_images/smartfone1.jpg",
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        CupertinoPageRoute(
+                          builder: (context) {
+                            return const OziqOvqatPage();
+                          },
+                        ),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(13.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(13),
+                        child: Image.asset(
+                          "assets/images/slider_images/oziq_ovqat0.jpg",
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        CupertinoPageRoute(
+                          builder: (context) {
+                            return GozallikPage();
+                          },
+                        ),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(13.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(13),
+                        child: Image.asset(
+                          "assets/images/slider_images/gozallik2.jpg",
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             singleChildScrollView(context),
             Container(
               height: 750,
@@ -66,7 +232,7 @@ class _MainPageState extends State<MainPage> {
                 : true && MediaQuery.of(context).size.width > 750 && MediaQuery.of(context).size.width <= 950
                     ? 4
                     : 5,
-        mainAxisExtent: MediaQuery.of(context).size.height / 1.85,
+        mainAxisExtent: MediaQuery.of(context).size.height / 1.75,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
       ),
@@ -85,7 +251,7 @@ class _MainPageState extends State<MainPage> {
                     child: Image.network(
                       items.image,
                       width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height / 2.9,
+                      height: MediaQuery.of(context).size.height / 3.2,
                       fit: BoxFit.fill,
                     ),
                   ),
