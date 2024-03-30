@@ -58,3 +58,4 @@ class _LikedPageState extends State<LikedPage> {
     );
   }
 }
+//Bu yer kerak emas savat page ga berin savedlardi

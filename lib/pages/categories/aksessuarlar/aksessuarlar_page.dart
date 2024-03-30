@@ -52,11 +52,17 @@ class _AksessuarlarState extends State<Aksessuarlar> {
               child: SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      mainAxisSpacing: 15,
-                      crossAxisCount: 2,
-                      mainAxisExtent: 450,
-                      crossAxisSpacing: 15,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: MediaQuery.of(context).size.width <= 550
+                          ? 2
+                          : true && MediaQuery.of(context).size.width <= 750 && MediaQuery.of(context).size.width > 550
+                          ? 3
+                          : true && MediaQuery.of(context).size.width > 750 && MediaQuery.of(context).size.width <= 950
+                          ? 4
+                          : 5,
+                      mainAxisExtent: MediaQuery.of(context).size.height / 1.75,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
                     ),
                     itemCount: filteredList.length,
                     itemBuilder: (context, index) {

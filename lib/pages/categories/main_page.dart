@@ -30,12 +30,13 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     timer = Timer.periodic(const Duration(seconds: 5), (Timer timer) {
-      if (currentPage < 2) {
+      if (currentPage < 5) {
         currentPage++;
       } else {
         currentPage = 0;
       }
-      pageController.animateToPage(currentPage, duration: const Duration(milliseconds: 350), curve: Curves.easeIn);
+      pageController.animateToPage(currentPage,
+          duration: const Duration(milliseconds: 350), curve: Curves.easeIn);
     });
     super.initState();
   }

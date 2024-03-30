@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:uzum_market_project/pages/savat/saved_products_page.dart';
 
 import 'liked_page.dart';
 
@@ -37,7 +38,7 @@ AppBar appBar(BuildContext context, bool likeIsHave) {
                 color: Colors.grey,
                 onPressed: () {
                   Navigator.of(context).push(CupertinoPageRoute(
-                    builder: (context) => const LikedPage(),
+                    builder: (context) => const SavatPage(),
                   ));
                 },
                 icon: Image.asset('assets/logos/shopping-bag.png', width: 30, height: 30),
