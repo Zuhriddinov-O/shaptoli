@@ -4,10 +4,11 @@ import 'package:animations/animations.dart';
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:uzum_market_project/classes/products.dart';
 
 import '../../widgets/scrollable_categories.dart';
-import '../appBar.dart';
+import '../savat/saved_products_page.dart';
 import 'gozallik/gozallik_page.dart';
 import 'maishiy_texnikalar/maishiy_page.dart';
 import 'oziq_ovqat/oziq_ovqat_page.dart';
@@ -26,6 +27,7 @@ class _MainPageState extends State<MainPage> {
   PageController pageController = PageController(
     initialPage: 0,
   );
+  List<Product> foundProducts = [];
 
   @override
   void initState() {
@@ -38,7 +40,21 @@ class _MainPageState extends State<MainPage> {
       pageController.animateToPage(currentPage,
           duration: const Duration(milliseconds: 350), curve: Curves.easeIn);
     });
+    foundProducts = productList;
     super.initState();
+  }
+
+  void runFiltered(String query) {
+    List<Product> result = [];
+    if (query.isEmpty) {
+      result = productList;
+    } else {
+      result =
+          productList.where((element) => element.name.toLowerCase().contains(query.toLowerCase())).toList();
+    }
+    setState(() {
+      foundProducts = result;
+    });
   }
 
   @override
@@ -50,7 +66,48 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(context, true),
+      appBar: AppBar(
+        centerTitle: true,
+        title: CupertinoTextField(
+          onChanged: (query) {
+            runFiltered(query);
+          },
+          smartDashesType: SmartDashesType.enabled,
+          textCapitalization: TextCapitalization.sentences,
+          smartQuotesType: SmartQuotesType.enabled,
+          decoration: BoxDecoration(
+            border: null,
+            color: Colors.grey[100],
+            borderRadius: BorderRadius.circular(10),
+          ),
+          cursorColor: Colors.grey,
+          placeholder: "Mahsulot va toifalarni qidirish",
+          style: GoogleFonts.oxygen(),
+          placeholderStyle: const TextStyle(color: Colors.black87, fontSize: 17),
+          prefix: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Icon(
+              CupertinoIcons.search,
+              color: Colors.grey,
+              size: 27,
+            ),
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(top: 8, right: 8, bottom: 8),
+            child: IconButton(
+              color: Colors.grey,
+              onPressed: () {
+                Navigator.of(context).push(CupertinoPageRoute(
+                  builder: (context) => const SavatPage(),
+                ));
+              },
+              icon: Image.asset('assets/logos/shopping-bag.png', width: 30, height: 30),
+            ),
+          ),
+        ],
+      ),
       body: RefreshIndicator(
         onRefresh: () async {
           setState(() {});
@@ -237,10 +294,10 @@ class _MainPageState extends State<MainPage> {
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
       ),
-      itemCount: productList.length,
+      itemCount: foundProducts.length,
       itemBuilder: (BuildContext context, index) {
-        productList.shuffle();
-        final items = productList[index];
+        foundProducts.shuffle();
+        final items = foundProducts[index];
         return OpenContainer(
           closedBuilder: (BuildContext context, void Function() action) {
             return Column(
