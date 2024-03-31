@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:uzum_market_project/pages/savat/liked_products.dart';
 import '../categories/categories_page.dart';
 import '../categories/main_page.dart';
 import '../kabinet/kabinet_page.dart';
@@ -17,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   final _pages = <StatefulWidget>[
     const MainPage(),
     const KatalogPage(),
-    const SavatPage(),
+    const LikedProducts(),
     const KabinetPage(),
   ];
 
@@ -61,11 +62,10 @@ class _HomePageState extends State<HomePage> {
             label: 'Katalog',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset("assets/logos/shopping-bag.png",
-                width: 30, color: _currentIndex == 2 ? Colors.deepPurple : Colors.grey),
-            label: 'Savat',
+            icon: Icon(CupertinoIcons.heart, size: 30, color: _currentIndex == 2 ? Colors.deepPurple : Colors.grey),
+            label: 'Istaklarim',
           ),
-          BottomNavigationBarItem(
+                    BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.person, color: _currentIndex == 3 ? Colors.deepPurple : Colors.grey),
             label: 'Kabinet',
           )
